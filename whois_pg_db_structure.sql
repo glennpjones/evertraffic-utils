@@ -121,3 +121,5 @@ CREATE TABLE domain_records (
     domain_status_3 varchar(255),
     domain_status_4 varchar(255)
 );
+
+CREATE INDEX idx_domain_records_domain_name ON domain_records(domain_name);
