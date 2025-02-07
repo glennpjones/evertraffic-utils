@@ -138,7 +138,7 @@ echo "Created temporary directory: $temp_dir"
 unzip "$zipfile" -d "$temp_dir"
 
 # Clean up existing CSV files in Docker container
-docker exec dokku.postgres.whois rm -f /tmp/*.csv
+docker exec dokku.postgres.whois bash -c "rm -f /tmp/*.csv"
 
 # Copy each CSV to Docker container
 for csv_file in "$temp_dir"/*.csv; do
@@ -165,6 +165,7 @@ cast_staging_to_final
 # Clean up temporary directory
 echo "Cleaning up temporary directory..."
 rm -rf "$temp_dir"
+rm -r /tmp/*
 
 echo "Finished processing $zipfile"
 echo "----------------------------"
